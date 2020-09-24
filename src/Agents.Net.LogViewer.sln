@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Net.LogViewer", "Agents.Net.LogViewer\Agents.Net.LogViewer.csproj", "{664CE16B-B4C0-4644-AE6B-792ED8E2562E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Net.LogViewer.Model", "Agents.Net.LogViewer.Model\Agents.Net.LogViewer.Model.csproj", "{3B564AA2-3BE4-4706-A67E-EFF8453B4BDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Net.LogViewer.Serialization", "Agents.Net.LogViewer.Serialization\Agents.Net.LogViewer.Serialization.csproj", "{ED215790-14CF-4C1E-A98E-9B7489A5D1F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Net.LogViewer.ViewModel", "Agents.Net.LogViewer.ViewModel\Agents.Net.LogViewer.ViewModel.csproj", "{EDD03185-4542-4979-8276-A19AC908F5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Net.LogViewer.WpfView", "Agents.Net.LogViewer.WpfView\Agents.Net.LogViewer.WpfView.csproj", "{97B05EF7-328D-4DE6-AD62-380886DA81FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{664CE16B-B4C0-4644-AE6B-792ED8E2562E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664CE16B-B4C0-4644-AE6B-792ED8E2562E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664CE16B-B4C0-4644-AE6B-792ED8E2562E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664CE16B-B4C0-4644-AE6B-792ED8E2562E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B564AA2-3BE4-4706-A67E-EFF8453B4BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B564AA2-3BE4-4706-A67E-EFF8453B4BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B564AA2-3BE4-4706-A67E-EFF8453B4BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B564AA2-3BE4-4706-A67E-EFF8453B4BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED215790-14CF-4C1E-A98E-9B7489A5D1F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED215790-14CF-4C1E-A98E-9B7489A5D1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED215790-14CF-4C1E-A98E-9B7489A5D1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED215790-14CF-4C1E-A98E-9B7489A5D1F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD03185-4542-4979-8276-A19AC908F5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD03185-4542-4979-8276-A19AC908F5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD03185-4542-4979-8276-A19AC908F5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD03185-4542-4979-8276-A19AC908F5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B05EF7-328D-4DE6-AD62-380886DA81FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B05EF7-328D-4DE6-AD62-380886DA81FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B05EF7-328D-4DE6-AD62-380886DA81FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B05EF7-328D-4DE6-AD62-380886DA81FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

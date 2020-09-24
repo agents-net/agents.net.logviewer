@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Agents.Net" Version="2021.0.0-prerelease-20200924083608" />
+    </ItemGroup>
+
+</Project>
