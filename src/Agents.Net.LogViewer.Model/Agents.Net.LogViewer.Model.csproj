@@ -6,7 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Agents.Net" Version="2021.0.0-prerelease-20200924083608" />
+      <PackageReference Include="Agents.Net" Version="2021.0.0-prerelease-20200926131511" />
+      <PackageReference Include="Autofac" Version="5.2.0" />
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,451 @@
+{
+  "GeneratorSettings": {
+    "PackageNamespace": "Agents.Net.LogViewer",
+    "GenerateAutofacModule": true
+  },
+  "Agents": [
+    {
+      "Id": "db99994b-144f-46d0-bc3e-a4dd23fdf8ed",
+      "Name": "MainWindowObserver",
+      "Namespace": ".WpfView.Agents",
+      "ConsumingMessages": [
+        "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09"
+      ],
+      "ProducedMessages": [
+        "bcd442b7-ff93-4a2b-b732-7b136ccb4704",
+        "dab5be3d-9ef0-4ed8-806d-54fbe880ceb0",
+        "5779f615-932b-4f69-872a-3f5b1a8a9e01"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "bb2fc74a-dfc8-419b-a6e3-6c73c72da3bd",
+      "Name": "LogFileOpener",
+      "Namespace": ".Serialization.Agents",
+      "ConsumingMessages": [
+        "bcd442b7-ff93-4a2b-b732-7b136ccb4704"
+      ],
+      "ProducedMessages": [
+        "152b4aa2-c40c-422e-95b4-efdbd6a02fb6"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "281c7726-236b-4f7a-ae55-48c1bf534bad",
+      "Name": "LogModelReader",
+      "Namespace": ".Serialization.Agents",
+      "ConsumingMessages": [
+        "152b4aa2-c40c-422e-95b4-efdbd6a02fb6"
+      ],
+      "ProducedMessages": [
+        "a9c071a5-911a-4cfc-a0ff-fa41a7cea45c"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "3ba50cbd-9ff6-4ef9-a75e-4e966785482e",
+      "Name": "LogEntryModelParser",
+      "Namespace": ".Serialization.Agents",
+      "ConsumingMessages": [
+        "a9c071a5-911a-4cfc-a0ff-fa41a7cea45c"
+      ],
+      "ProducedMessages": [
+        "4b15deda-6b06-4a9f-917d-62e9ae18e994"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "980c685c-b903-4816-8937-fe8a37ab9b49",
+      "Name": "LogModelAggregator",
+      "Namespace": ".Model.Agents",
+      "ConsumingMessages": [
+        "4b15deda-6b06-4a9f-917d-62e9ae18e994"
+      ],
+      "ProducedMessages": [
+        "884a63da-8845-4250-aaff-7086144d3262"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "b46e9584-8c4c-4da4-9bca-38644053fa8a",
+      "Name": "MessagesViewModelReader",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "884a63da-8845-4250-aaff-7086144d3262"
+      ],
+      "ProducedMessages": [
+        "7e936f41-8771-464d-ad9b-54c66668c53b"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "f1b4aaa8-7e5a-40b2-bb61-e159fc58ddc8",
+      "Name": "MessageViewModelCreator",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "7e936f41-8771-464d-ad9b-54c66668c53b"
+      ],
+      "ProducedMessages": [
+        "bb27d460-6f63-47ff-a09a-f4ca45eab8af"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "3fe00af8-d1ff-4ffc-b3db-e8d7bb461760",
+      "Name": "MessagesViewModelAggregator",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "bb27d460-6f63-47ff-a09a-f4ca45eab8af"
+      ],
+      "ProducedMessages": [
+        "2e2dce88-9c1c-4778-8764-45d5b18da06d"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "52152170-1844-4019-9dc8-38fc1f16a86b",
+      "Name": "AgentsViewModelReader",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "884a63da-8845-4250-aaff-7086144d3262"
+      ],
+      "ProducedMessages": [
+        "8184fed9-1408-431c-a353-05d7bb1a0641"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "fdd1607f-91a9-40e4-b0af-767199227e9e",
+      "Name": "AgentViewModelCreator",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "8184fed9-1408-431c-a353-05d7bb1a0641"
+      ],
+      "ProducedMessages": [
+        "2e08e7e7-7236-44d9-9b7c-838690850bff"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "5a3b180d-5496-492f-b665-c87e0ac20803",
+      "Name": "AgentsViewModelAggregator",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "2e08e7e7-7236-44d9-9b7c-838690850bff"
+      ],
+      "ProducedMessages": [
+        "3f847a11-f34b-4ef4-80cb-eb75c58fe6b5"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "$type": "Agents.Net.Designer.Model.InterceptorAgentModel, Agents.Net.Designer.Model",
+      "InterceptingMessages": [
+        "2e2dce88-9c1c-4778-8764-45d5b18da06d",
+        "3f847a11-f34b-4ef4-80cb-eb75c58fe6b5"
+      ],
+      "Id": "ecfbfce1-667d-419c-87c3-f2b13d919a78",
+      "Name": "ViewModelCrossReferencing",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [],
+      "ProducedMessages": [],
+      "IncomingEvents": [],
+      "ProducedEvents": [
+        "Replaces empty references with concrete view models"
+      ]
+    },
+    {
+      "Id": "20c6305f-5127-4b80-a6f0-bccd70aa737b",
+      "Name": "LogViewModelCreator",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "2e2dce88-9c1c-4778-8764-45d5b18da06d",
+        "3f847a11-f34b-4ef4-80cb-eb75c58fe6b5"
+      ],
+      "ProducedMessages": [
+        "7af18058-5259-4b59-8cb2-fef8d216e76f"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "3fc17a68-a044-4c71-adc2-3ad4ab1efcb4",
+      "Name": "ViewModelSynchronizer",
+      "Namespace": ".WpfView.Agents",
+      "ConsumingMessages": [
+        "7af18058-5259-4b59-8cb2-fef8d216e76f",
+        "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09"
+      ],
+      "ProducedMessages": [],
+      "IncomingEvents": [],
+      "ProducedEvents": [
+        "Set data context of window"
+      ]
+    },
+    {
+      "Id": "0dd7441a-d59e-41f0-96d8-ff7b2c3b0634",
+      "Name": "DetailViewModelSynchronizer",
+      "Namespace": ".WpfView.Agents",
+      "ConsumingMessages": [
+        "dab5be3d-9ef0-4ed8-806d-54fbe880ceb0",
+        "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09"
+      ],
+      "ProducedMessages": [],
+      "IncomingEvents": [],
+      "ProducedEvents": [
+        "Set data context of detail view"
+      ]
+    },
+    {
+      "Id": "2a48fb78-65a9-4d1d-b165-abf9d845c7af",
+      "Name": "GraphMapInformationGatherer",
+      "Namespace": ".ViewModel.MicrosoftGraph.Agents",
+      "ConsumingMessages": [
+        "dab5be3d-9ef0-4ed8-806d-54fbe880ceb0",
+        "7af18058-5259-4b59-8cb2-fef8d216e76f"
+      ],
+      "ProducedMessages": [
+        "ad4a193d-df00-4605-b8ed-ffba5054dfb2",
+        "82b8e65a-0bf6-4272-af0a-92df259d808d"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "$type": "Agents.Net.Designer.Model.InterceptorAgentModel, Agents.Net.Designer.Model",
+      "InterceptingMessages": [
+        "ad4a193d-df00-4605-b8ed-ffba5054dfb2",
+        "82b8e65a-0bf6-4272-af0a-92df259d808d"
+      ],
+      "Id": "d876575e-a4c5-4ca5-a6e3-f975052f1611",
+      "Name": "GraphCache",
+      "Namespace": ".ViewModel.MicrosoftGraph.Agents",
+      "ConsumingMessages": [
+        "884a63da-8845-4250-aaff-7086144d3262"
+      ],
+      "ProducedMessages": [
+        "cc5f88f0-697e-42b9-939b-02e68aee0424",
+        "e5aef215-4f0d-4a64-9edd-2d3f96e1e467"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "2fdc19aa-6b1e-4de9-9a96-7961244a8c1f",
+      "Name": "GraphCreator",
+      "Namespace": ".ViewModel.MicrosoftGraph.Agents",
+      "ConsumingMessages": [
+        "ad4a193d-df00-4605-b8ed-ffba5054dfb2",
+        "82b8e65a-0bf6-4272-af0a-92df259d808d"
+      ],
+      "ProducedMessages": [
+        "cc5f88f0-697e-42b9-939b-02e68aee0424",
+        "e5aef215-4f0d-4a64-9edd-2d3f96e1e467"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "a7ba6436-e2c9-4ba9-a499-fa113a313d47",
+      "Name": "GraphViewModelSynchronizer",
+      "Namespace": ".WpfView.Agents",
+      "ConsumingMessages": [
+        "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09",
+        "cc5f88f0-697e-42b9-939b-02e68aee0424",
+        "e5aef215-4f0d-4a64-9edd-2d3f96e1e467"
+      ],
+      "ProducedMessages": [],
+      "IncomingEvents": [],
+      "ProducedEvents": [
+        "Set data context of graph views"
+      ]
+    },
+    {
+      "Id": "61824855-9fa2-4d18-92e7-4bb64493be4f",
+      "Name": "DetailViewModelWatcher",
+      "Namespace": ".ViewModel.Agents",
+      "ConsumingMessages": [
+        "dab5be3d-9ef0-4ed8-806d-54fbe880ceb0"
+      ],
+      "ProducedMessages": [
+        "b6f00d6b-0974-45ef-a3b0-83fbd81345fa"
+      ],
+      "IncomingEvents": [
+        "Jump button clicked"
+      ],
+      "ProducedEvents": []
+    },
+    {
+      "Id": "8949bfb1-27a6-424b-b063-509981707d99",
+      "Name": "SelectionModifier",
+      "Namespace": ".WpfView.Agents",
+      "ConsumingMessages": [
+        "b6f00d6b-0974-45ef-a3b0-83fbd81345fa",
+        "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09"
+      ],
+      "ProducedMessages": [],
+      "IncomingEvents": [],
+      "ProducedEvents": [
+        "Set SelectedItem in ListBox"
+      ]
+    },
+    {
+      "Id": "3ce12c31-e095-4572-a537-c5429aea9123",
+      "Name": "GraphToViewModelTranslator",
+      "Namespace": ".ViewModel.MicrosoftGraph.Agents",
+      "ConsumingMessages": [
+        "5779f615-932b-4f69-872a-3f5b1a8a9e01"
+      ],
+      "ProducedMessages": [
+        "b6f00d6b-0974-45ef-a3b0-83fbd81345fa"
+      ],
+      "IncomingEvents": [],
+      "ProducedEvents": []
+    }
+  ],
+  "Messages": [
+    {
+      "Id": "d773bcc7-1b7c-48b4-99c4-bc065c413539",
+      "Name": "InitializeMessage",
+      "Namespace": "Agents.Net",
+      "BuildIn": true
+    },
+    {
+      "Id": "15aa20fb-091f-4cb1-8c01-07fefea19435",
+      "Name": "ExceptionMessage",
+      "Namespace": "Agents.Net",
+      "BuildIn": true
+    },
+    {
+      "Id": "7a68f0a8-a0c5-42b8-b686-f84c19fa6f09",
+      "Name": "MainWindowCreated",
+      "Namespace": ".WpfView.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "bcd442b7-ff93-4a2b-b732-7b136ccb4704",
+      "Name": "LogFileOpening",
+      "Namespace": ".Serialization.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "152b4aa2-c40c-422e-95b4-efdbd6a02fb6",
+      "Name": "LogFileOpened",
+      "Namespace": ".Serialization.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "a9c071a5-911a-4cfc-a0ff-fa41a7cea45c",
+      "Name": "LogEntryRead",
+      "Namespace": ".Serialization.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "4b15deda-6b06-4a9f-917d-62e9ae18e994",
+      "Name": "LogEntryModelCreated",
+      "Namespace": ".Model.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "884a63da-8845-4250-aaff-7086144d3262",
+      "Name": "LogModelCreated",
+      "Namespace": ".Model.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "7e936f41-8771-464d-ad9b-54c66668c53b",
+      "Name": "MessageViewModelCreating",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "bb27d460-6f63-47ff-a09a-f4ca45eab8af",
+      "Name": "MessageViewModelCreated",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "2e2dce88-9c1c-4778-8764-45d5b18da06d",
+      "Name": "MessagesViewModelAggregated",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "8184fed9-1408-431c-a353-05d7bb1a0641",
+      "Name": "AgentViewModelCreating",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "2e08e7e7-7236-44d9-9b7c-838690850bff",
+      "Name": "AgentViewModelCreated",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "3f847a11-f34b-4ef4-80cb-eb75c58fe6b5",
+      "Name": "AgentsViewModelAggregated",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "7af18058-5259-4b59-8cb2-fef8d216e76f",
+      "Name": "LogViewModelCreated",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "dab5be3d-9ef0-4ed8-806d-54fbe880ceb0",
+      "Name": "SelectedViewModelChanged",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "ad4a193d-df00-4605-b8ed-ffba5054dfb2",
+      "Name": "IncomingGraphCreating",
+      "Namespace": ".ViewModel.MicrosoftGraph.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "82b8e65a-0bf6-4272-af0a-92df259d808d",
+      "Name": "OutgoingGraphCreating",
+      "Namespace": ".ViewModel.MicrosoftGraph.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "cc5f88f0-697e-42b9-939b-02e68aee0424",
+      "Name": "IncomingGraphCreated",
+      "Namespace": ".ViewModel.MicrosoftGraph.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "e5aef215-4f0d-4a64-9edd-2d3f96e1e467",
+      "Name": "OutgoingGraphCreated",
+      "Namespace": ".ViewModel.MicrosoftGraph.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "b6f00d6b-0974-45ef-a3b0-83fbd81345fa",
+      "Name": "ViewModelSelecting",
+      "Namespace": ".ViewModel.Messages",
+      "BuildIn": false
+    },
+    {
+      "Id": "5779f615-932b-4f69-872a-3f5b1a8a9e01",
+      "Name": "GraphNodeDoubleClicked",
+      "Namespace": ".ViewModel.MicrosoftGraph.Messages",
+      "BuildIn": false
+    }
+  ]
+}
