@@ -15,7 +15,11 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
 
         protected override void ExecuteCore(Message messageData)
         {
-            //TODO Implement
+            GraphNodeDoubleClicked doubleClicked = messageData.Get<GraphNodeDoubleClicked>();
+            if (doubleClicked.DoubleClickedItem.UserData is BaseViewModel viewModel)
+            {
+                OnMessage(new ViewModelSelecting(viewModel, messageData));
+            }
         }
     }
 }

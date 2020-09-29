@@ -6,6 +6,8 @@ using Agents.Net.LogViewer.ViewModel;
 using Agents.Net.LogViewer.ViewModel.Messages;
 using Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Messages;
 using Agents.Net.LogViewer.WpfView.Messages;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.WpfGraphControl;
 
 namespace Agents.Net.LogViewer.WpfView.Agents
 {
@@ -28,6 +30,22 @@ namespace Agents.Net.LogViewer.WpfView.Agents
             mainWindow.OpenLogClicked += MainWindowOnOpenLogClicked;
             mainWindow.MessageLogList.SelectionChanged += MessageLogListOnSelectionChanged;
             mainWindow.AgentList.SelectionChanged += MessageLogListOnSelectionChanged;
+            mainWindow.IncomingGraphViewer.MouseUp += GraphViewerOnMouseUp;
+            mainWindow.OutgoingGraphViewer.MouseUp += GraphViewerOnMouseUp;
+        }
+
+        private void GraphViewerOnMouseUp(object sender, MsaglMouseEventArgs e)
+        {
+            if (!(sender is GraphViewer graphViewer))
+            {
+                return;
+            }
+
+            if (e.Clicks == 1 &&
+                graphViewer.ObjectUnderMouseCursor?.DrawingObject != null)
+            {
+                OnMessage(new GraphNodeDoubleClicked(graphViewer.ObjectUnderMouseCursor.DrawingObject, message));
+            }
         }
 
         private void MessageLogListOnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,6 +79,9 @@ namespace Agents.Net.LogViewer.WpfView.Agents
             {
                 mainWindow.MessageLogList.SelectionChanged -= MessageLogListOnSelectionChanged;
                 mainWindow.AgentList.SelectionChanged -= MessageLogListOnSelectionChanged;
+                mainWindow.AgentList.SelectionChanged -= MessageLogListOnSelectionChanged;
+                mainWindow.IncomingGraphViewer.MouseUp -= GraphViewerOnMouseUp;
+                mainWindow.OutgoingGraphViewer.MouseUp -= GraphViewerOnMouseUp;
             }
         }
     }

@@ -8,12 +8,19 @@
     <ItemGroup>
       <PackageReference Include="Agents.Net" Version="2021.0.0-prerelease-20200926131511" />
       <PackageReference Include="Autofac" Version="5.2.0" />
+      <PackageReference Include="AutomaticGraphLayout.Drawing" Version="1.1.7" />
       <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Agents.Net.LogViewer.Serialization\Agents.Net.LogViewer.Serialization.csproj" />
       <ProjectReference Include="..\Agents.Net.LogViewer.ViewModel\Agents.Net.LogViewer.ViewModel.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="WpfGraphControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6baa2c1345e83b6e">
+        <HintPath>..\Dependencies\WpfGraphControl.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

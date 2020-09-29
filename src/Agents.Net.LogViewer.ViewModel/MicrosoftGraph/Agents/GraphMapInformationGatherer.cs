@@ -6,7 +6,6 @@ using Agents.Net.LogViewer.ViewModel.Messages;
 namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
 {
     [Consumes(typeof(SelectedViewModelChanged))]
-    [Consumes(typeof(LogViewModelCreated))]
     [Produces(typeof(IncomingGraphCreating))]
     [Produces(typeof(OutgoingGraphCreating))]
     public class GraphMapInformationGatherer : Agent
@@ -17,7 +16,9 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
 
         protected override void ExecuteCore(Message messageData)
         {
-            //TODO Implement
+            SelectedViewModelChanged selectedViewModelChanged = messageData.Get<SelectedViewModelChanged>();
+            OnMessage(new IncomingGraphCreating(selectedViewModelChanged.SelectedViewModel, messageData));
+            OnMessage(new OutgoingGraphCreating(selectedViewModelChanged.SelectedViewModel, messageData));
         }
     }
 }

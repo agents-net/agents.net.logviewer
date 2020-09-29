@@ -284,7 +284,18 @@
             </materialDesign:Card>
             <materialDesign:Card Padding="32" Margin="16,16,10,10"
                                  Grid.Column="2">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" x:Name="IncomingGraphViewerPanel" 
+                               ClipToBounds="True" VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"/>
+                    <DockPanel Grid.Row="1" x:Name="OutgoingGraphViewerPanel" 
+                               ClipToBounds="True" VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch"/>
+                </Grid>
             </materialDesign:Card>
         </Grid>
     </DockPanel>

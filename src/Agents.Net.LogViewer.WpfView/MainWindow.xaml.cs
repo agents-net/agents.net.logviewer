@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.WpfGraphControl;
 using Microsoft.Win32;
+using ModifierKeys = System.Windows.Input.ModifierKeys;
 
 namespace Agents.Net.LogViewer.WpfView
 {
@@ -10,9 +15,19 @@ namespace Agents.Net.LogViewer.WpfView
     /// </summary>
     public partial class MainWindow : Window
     {
+        public GraphViewer IncomingGraphViewer { get; } = new GraphViewer();
+        public GraphViewer OutgoingGraphViewer { get; } = new GraphViewer();
+        
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            IncomingGraphViewer.BindToPanel(IncomingGraphViewerPanel);
+            OutgoingGraphViewer.BindToPanel(OutgoingGraphViewerPanel);
         }
 
         private void OpenLogOnClick(object sender, RoutedEventArgs e)

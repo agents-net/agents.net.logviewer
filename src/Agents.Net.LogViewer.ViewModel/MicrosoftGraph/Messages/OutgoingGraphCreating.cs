@@ -5,19 +5,23 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Messages
 {
     public class OutgoingGraphCreating : Message
     {
-        public OutgoingGraphCreating(Message predecessorMessage)
+        public OutgoingGraphCreating(BaseViewModel root, Message predecessorMessage)
 			: base(predecessorMessage)
         {
+            Root = root;
         }
 
-        public OutgoingGraphCreating(IEnumerable<Message> predecessorMessages)
+        public OutgoingGraphCreating(BaseViewModel root, IEnumerable<Message> predecessorMessages)
 			: base(predecessorMessages)
         {
+            Root = root;
         }
+        
+        public BaseViewModel Root { get; }
 
         protected override string DataToString()
         {
-            return string.Empty;
+            return $"{nameof(Root)}: {Root}";
         }
     }
 }

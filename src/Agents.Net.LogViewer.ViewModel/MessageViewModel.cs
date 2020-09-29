@@ -25,9 +25,11 @@ namespace Agents.Net.LogViewer.ViewModel
         public string Data { get; }
         public string Exception { get; }
         public MessageViewModelReference[] Predecessors { get; }
-        public MessageViewModelReference[] Successors { get; set; }
+
+        public MessageViewModelReference[] Successors { get; set; } = Array.Empty<MessageViewModelReference>();
         public MessageViewModelReference Child { get; }
-        public AgentViewModelReference[] InterceptedBy { get; set; }
-        public AgentViewModelReference[] UsedBy { get; set; }
+
+        public AgentViewModelReference[] InterceptedBy { get; set; } = Array.Empty<AgentViewModelReference>();
+        public AgentViewModelReference[] UsedBy { get; set; } = Array.Empty<AgentViewModelReference>();
     }
 }
