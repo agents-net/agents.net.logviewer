@@ -50,7 +50,9 @@
                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type viewModel:MessageViewModel}">
-                                <TextBlock Style="{DynamicResource MaterialDesignTextBlock}">
+                                <TextBlock Style="{DynamicResource MaterialDesignTextBlock}" 
+                                           x:Name="MessageTextBlock"
+                                           Background="IndianRed">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} - {1} - {2}">
                                             <Binding Path="Index"/>
@@ -60,6 +62,16 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Exception}"
+                                                 Value="">
+                                        <Setter TargetName="MessageTextBlock" Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Exception}"
+                                                 Value="{x:Null}">
+                                        <Setter TargetName="MessageTextBlock" Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -157,6 +169,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="Name" Margin="0,4,8,4" VerticalAlignment="Center"
@@ -181,48 +194,58 @@
                                                Grid.Column="0" Grid.Row="3" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="{Binding Data}" VerticalAlignment="Center"
+                                               ToolTip="{Binding Data}"
+                                               TextTrimming="CharacterEllipsis"
                                                Grid.Column="1" Grid.Row="3" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
-                                               Text="Predecessors" Margin="0,8,4,4" VerticalAlignment="Top"
+                                               Text="Exception" Margin="0,4,8,4" VerticalAlignment="Center"
                                                Grid.Column="0" Grid.Row="4" />
+                                    <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
+                                               Text="{Binding Exception}" VerticalAlignment="Center"
+                                               ToolTip="{Binding Exception}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Grid.Column="1" Grid.Row="4" />
+                                    <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
+                                               Text="Predecessors" Margin="0,8,4,4" VerticalAlignment="Top"
+                                               Grid.Column="0" Grid.Row="5" />
                                     <ListBox Style="{DynamicResource MaterialDesignListBox}"
                                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
                                              SelectionMode="Single"
                                              ItemsSource="{Binding Predecessors}"
                                              MaxHeight="100"
-                                             Grid.Column="1" Grid.Row="4" />
+                                             Grid.Column="1" Grid.Row="5" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="Successors" Margin="0,8,4,4" VerticalAlignment="Top"
-                                               Grid.Column="0" Grid.Row="5" />
+                                               Grid.Column="0" Grid.Row="6" />
                                     <ListBox Style="{DynamicResource MaterialDesignListBox}"
                                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
                                              SelectionMode="Single"
                                              ItemsSource="{Binding Successors}"
                                              MaxHeight="100"
-                                             Grid.Column="1" Grid.Row="5" />
+                                             Grid.Column="1" Grid.Row="6" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="Child" Margin="0,8,8,4" VerticalAlignment="Top"
-                                               Grid.Column="0" Grid.Row="6" />
+                                               Grid.Column="0" Grid.Row="7" />
                                     <ContentControl Content="{Binding Child}" 
-                                                    Grid.Row="6" Grid.Column="1" />
+                                                    Grid.Row="7" Grid.Column="1" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="Used by" Margin="0,8,4,4" VerticalAlignment="Top"
-                                               Grid.Column="0" Grid.Row="7" />
+                                               Grid.Column="0" Grid.Row="8" />
                                     <ListBox Style="{DynamicResource MaterialDesignListBox}"
                                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
                                              SelectionMode="Single"
                                              ItemsSource="{Binding UsedBy}"
                                              MaxHeight="100"
-                                             Grid.Column="1" Grid.Row="7" />
+                                             Grid.Column="1" Grid.Row="8" />
                                     <TextBlock Style="{DynamicResource MaterialDesignTextBlock}"
                                                Text="Intercepted by" Margin="0,8,4,4" VerticalAlignment="Top"
-                                               Grid.Column="0" Grid.Row="8" />
+                                               Grid.Column="0" Grid.Row="9" />
                                     <ListBox Style="{DynamicResource MaterialDesignListBox}"
                                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
                                              SelectionMode="Single"
                                              ItemsSource="{Binding InterceptedBy}"
                                              MaxHeight="100"
-                                             Grid.Column="1" Grid.Row="8" />
+                                             Grid.Column="1" Grid.Row="9" />
                                 </Grid>
                             </ScrollViewer>
                         </DataTemplate>
