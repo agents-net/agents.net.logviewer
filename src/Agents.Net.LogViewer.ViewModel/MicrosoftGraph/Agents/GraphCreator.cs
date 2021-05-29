@@ -55,7 +55,7 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 {
                     Attr =
                     {
-                        Shape = Shape.Ellipse
+                        Shape = Shape.Box
                     },
                     LabelText = viewModel.Name,
                     UserData = viewModel
@@ -89,7 +89,7 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 {
                     Attr =
                     {
-                        Shape = Shape.Ellipse
+                        Shape = Shape.Box
                     },
                     LabelText = viewModel.Name,
                     UserData = viewModel
@@ -109,11 +109,11 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
         private Graph CreateIncomingAgentGraph(AgentViewModel root)
         {
             Graph graph = new Graph {Attr = {LayerDirection = LayerDirection.TB}};
-            HashSet<AgentViewModel> processedViewModels = new HashSet<AgentViewModel>();
+            HashSet<BaseViewModel> processedViewModels = new HashSet<BaseViewModel>();
             AddNode(root);
             return graph;
 
-            Node AddNode(AgentViewModel viewModel)
+            Node AddNode(BaseViewModel viewModel)
             {
                 if (!processedViewModels.Add(viewModel))
                 {
@@ -123,13 +123,13 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 {
                     Attr =
                     {
-                        Shape = Shape.Ellipse
+                        Shape = viewModel is AgentViewModel ? Shape.Ellipse : Shape.Box
                     },
                     LabelText = viewModel.Name,
                     UserData = viewModel
                 };
                 graph.AddNode(node);
-                foreach (AgentViewModel predecessor in Predecessors(viewModel))
+                foreach (BaseViewModel predecessor in Predecessors(viewModel))
                 {
                     Node predecessorNode = AddNode(predecessor);
                     graph.AddEdge(predecessorNode.Id, node.Id);
@@ -138,23 +138,31 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 return node;
             }
 
-            IEnumerable<AgentViewModel> Predecessors(AgentViewModel viewModel)
+            IEnumerable<BaseViewModel> Predecessors(BaseViewModel viewModel)
             {
-                return viewModel.ConsumingMessages.Concat(viewModel.InterceptingMessages)
-                                .Where(m => m.ViewModel?.ProducingAgent?.ViewModel != null)
-                                .Select(m => m.ViewModel.ProducingAgent.ViewModel)
-                                .Distinct();
+                if (viewModel is AgentViewModel agentViewModel)
+                {
+                    return agentViewModel.ConsumingMessages.Concat(agentViewModel.InterceptingMessages)
+                                         .Where(m => m.ViewModel != null)
+                                         .Select(m => m.ViewModel)
+                                         .Distinct();
+                }
+
+                MessageViewModel messageViewModel = (MessageViewModel) viewModel;
+                return messageViewModel.ProducingAgent?.ViewModel != null
+                           ? new[] {messageViewModel.ProducingAgent?.ViewModel}
+                           : Enumerable.Empty<BaseViewModel>();
             }
         }
 
         private Graph CreateOutgoingAgentGraph(AgentViewModel root)
         {
             Graph graph = new Graph {Attr = {LayerDirection = LayerDirection.TB}};
-            HashSet<AgentViewModel> processedViewModels = new HashSet<AgentViewModel>();
+            HashSet<BaseViewModel> processedViewModels = new HashSet<BaseViewModel>();
             AddNode(root);
             return graph;
 
-            Node AddNode(AgentViewModel viewModel)
+            Node AddNode(BaseViewModel viewModel)
             {
                 if (!processedViewModels.Add(viewModel))
                 {
@@ -164,13 +172,13 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 {
                     Attr =
                     {
-                        Shape = Shape.Ellipse
+                        Shape = viewModel is AgentViewModel ? Shape.Ellipse : Shape.Box
                     },
                     LabelText = viewModel.Name,
                     UserData = viewModel
                 };
                 graph.AddNode(node);
-                foreach (AgentViewModel successors in Successors(viewModel))
+                foreach (BaseViewModel successors in Successors(viewModel))
                 {
                     Node successorNode = AddNode(successors);
                     graph.AddEdge(node.Id, successorNode.Id);
@@ -179,14 +187,21 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 return node;
             }
 
-            IEnumerable<AgentViewModel> Successors(AgentViewModel viewModel)
+            IEnumerable<BaseViewModel> Successors(BaseViewModel viewModel)
             {
-                return viewModel.ProducingMessages
-                                .Where(m => m.ViewModel != null)
-                                .SelectMany(m => m.ViewModel.UsedBy.Concat(m.ViewModel.InterceptedBy))
-                                .Where(a => a.ViewModel != null)
-                                .Select(a => a.ViewModel)
-                                .Distinct();
+                if (viewModel is AgentViewModel agentViewModel)
+                {
+                    return agentViewModel.ProducingMessages
+                                         .Where(m => m.ViewModel != null)
+                                         .Select(m => m.ViewModel)
+                                         .Distinct();
+                }
+
+                MessageViewModel messageViewModel = (MessageViewModel) viewModel;
+                return messageViewModel.UsedBy.Concat(messageViewModel.InterceptedBy)
+                                       .Where(a => a.ViewModel != null)
+                                       .Select(a => a.ViewModel)
+                                       .Distinct();
             }
         }
     }

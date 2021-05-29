@@ -20,9 +20,11 @@ namespace Agents.Net.LogViewer.Serialization.Agents
             LogFileOpened opened = messageData.Get<LogFileOpened>();
             using StreamReader reader = new StreamReader(opened.Data, Encoding.UTF8);
             List<Message> messages = new List<Message>();
+            int line = 1;
             while (!reader.EndOfStream)
             {
-                messages.Add(new LogEntryRead(reader.ReadLine(), messageData));
+                messages.Add(new LogEntryRead(reader.ReadLine(), messageData, line));
+                line++;
             }
             OnMessages(messages);
         }

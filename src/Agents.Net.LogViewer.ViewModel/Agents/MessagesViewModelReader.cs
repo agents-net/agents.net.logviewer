@@ -48,7 +48,8 @@ namespace Agents.Net.LogViewer.ViewModel.Agents
                                                                         l.log.Log.Type,
                                                                         l.log.Log.AgentId,
                                                                         l.child),
-                                                                    l.log.Exception))
+                                                                    l.log.Exception,
+                                                      l.log.LineNumber))
                                           .ToArray();
             publishedIds = publishedIds.Concat(publishedAsChild.Select(p => p.Log.Message.Id))
                                        .ToArray();
@@ -75,7 +76,8 @@ namespace Agents.Net.LogViewer.ViewModel.Agents
                                                                                       p.publisher.Log.Type,
                                                                                       p.publisher.Log.AgentId,
                                                                                       p.decorator.Decorator),
-                                                                                  p.publisher.Exception))
+                                                                                  p.publisher.Exception,
+                                                                                  p.publisher.LineNumber))
                                                                       .ToArray();
             silentMessages = silentMessages.Except(silentDecoratorPseudoPublisher.Select(p => p.Log.Message.Id))
                                            .Except(publishedAsChild.Select(p => p.Log.Message.Id))
@@ -85,7 +87,8 @@ namespace Agents.Net.LogViewer.ViewModel.Agents
                                                             .Where(e => e != null)
                                                             .Select(e => new LogEntry(e.Timestamp,
                                                                                       new AgentLog("Extern", "Publishing", Guid.Empty,
-                                                                                                   e.Log.Message), e.Exception));
+                                                                                          e.Log.Message), e.Exception,
+                                                                        e.LineNumber));
             
             MessageViewModelCreating[] messages = publishedMessages.Concat(externalMessages)
                                                                    .Concat(publishedAsChild)

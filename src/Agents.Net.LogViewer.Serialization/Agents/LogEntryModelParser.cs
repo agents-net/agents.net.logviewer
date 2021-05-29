@@ -42,7 +42,7 @@ namespace Agents.Net.LogViewer.Serialization.Agents
                     exception = log["@x"]?.Value<string>();
                 }
 
-                OnMessage(new LogEntryModelCreated(new LogEntry(timestamp, deserializedLog, exception), messageData));
+                OnMessage(new LogEntryModelCreated(new LogEntry(timestamp, deserializedLog, exception, entryRead.LineNumber), messageData));
             }
             catch (JsonException)
             {

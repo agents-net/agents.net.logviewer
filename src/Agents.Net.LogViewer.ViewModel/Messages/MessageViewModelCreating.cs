@@ -10,23 +10,19 @@ namespace Agents.Net.LogViewer.ViewModel.Messages
 			: base(predecessorMessage)
         {
             LogEntry = logEntry;
-            Index = index;
         }
 
         public MessageViewModelCreating(LogEntry logEntry, int index, IEnumerable<Message> predecessorMessages)
 			: base(predecessorMessages)
         {
             LogEntry = logEntry;
-            Index = index;
         }
         
         public LogEntry LogEntry { get; }
-        
-        public int Index { get; }
 
         protected override string DataToString()
         {
-            return $"{nameof(LogEntry)}: {LogEntry}; {nameof(Index)}: {Index}";
+            return $"{nameof(LogEntry)}: {LogEntry}";
         }
     }
 }

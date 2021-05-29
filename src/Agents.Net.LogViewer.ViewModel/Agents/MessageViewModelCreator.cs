@@ -25,7 +25,7 @@ namespace Agents.Net.LogViewer.ViewModel.Agents
             }
 
             MessageViewModel messageViewModel = new MessageViewModel(name, creating.LogEntry.Log.Message.Name,
-                                                                     creating.LogEntry.Log.Message.Id, creating.Index,
+                                                                     creating.LogEntry.Log.Message.Id, creating.LogEntry.LineNumber,
                                                                      creating.LogEntry.Timestamp,
                                                                      creating.LogEntry.Log.Message.Data,
                                                                      creating.LogEntry.Exception,

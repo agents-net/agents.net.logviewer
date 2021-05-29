@@ -5,12 +5,12 @@ namespace Agents.Net.LogViewer.ViewModel
     public class MessageViewModel : BaseViewModel
     {
         public MessageViewModel(string name, string fullName, Guid id,
-                 int index, DateTime timestamp, string data, string exception,
+                 int lineNumber, DateTime timestamp, string data, string exception,
                  MessageViewModelReference[] predecessors, MessageViewModelReference child,
                  AgentViewModelReference producingAgent)
             : base(name, fullName, id)
         {
-            Index = index;
+            LineNumber = lineNumber;
             Timestamp = timestamp;
             Data = data;
             Exception = exception;
@@ -19,7 +19,7 @@ namespace Agents.Net.LogViewer.ViewModel
             ProducingAgent = producingAgent;
         }
 
-        public int Index { get; }
+        public int LineNumber { get; }
         public AgentViewModelReference ProducingAgent { get; set; }
         public DateTime Timestamp { get; }
         public string Data { get; }
