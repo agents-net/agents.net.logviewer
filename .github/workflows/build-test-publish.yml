@@ -2,7 +2,7 @@ name: Build, Test and Publish Executable
 
 on:
   push:
-    branches-ig:
+    branches:
       - master
 
 jobs:
