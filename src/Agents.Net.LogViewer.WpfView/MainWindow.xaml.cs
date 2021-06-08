@@ -27,7 +27,9 @@ namespace Agents.Net.LogViewer.WpfView
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             IncomingGraphViewer.BindToPanel(IncomingGraphViewerPanel);
+            IncomingGraphViewer.RunLayoutAsync = true;
             OutgoingGraphViewer.BindToPanel(OutgoingGraphViewerPanel);
+            OutgoingGraphViewer.RunLayoutAsync = true;
         }
 
         private void OpenLogOnClick(object sender, RoutedEventArgs e)
