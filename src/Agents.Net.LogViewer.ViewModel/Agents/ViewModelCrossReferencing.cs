@@ -19,6 +19,9 @@ namespace Agents.Net.LogViewer.ViewModel.Agents
 
         private void OnMessagesCollected(MessageCollection<MessagesViewModelAggregated, AgentsViewModelAggregated> set)
         {
+            set.MarkAsConsumed(set.Message1);
+            set.MarkAsConsumed(set.Message2);
+            
             AgentReferenceAggregator referenceAggregator = ResolveAgents();
             referenceAggregator.ResolveMessageAgentReferences();
             ResolveMessages();

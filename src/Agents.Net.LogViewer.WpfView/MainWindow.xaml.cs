@@ -1,8 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using Agents.Net.LogViewer.ViewModel;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.WpfGraphControl;
 using Microsoft.Win32;
@@ -22,6 +26,19 @@ namespace Agents.Net.LogViewer.WpfView
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            
+            DependencyPropertyDescriptor dpd = DependencyPropertyDescriptor
+                .FromProperty(ItemsControl.ItemsSourceProperty, typeof(ListBox));
+            dpd?.AddValueChanged(MessageLogList, MessageLogListPropertyChangedCallback);
+        }
+
+        private void MessageLogListPropertyChangedCallback(object? sender, EventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(MessageLogList.ItemsSource);
+            if (view != null)
+            {
+                view.Filter = MessageFilter;
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -72,6 +89,18 @@ namespace Agents.Net.LogViewer.WpfView
         protected virtual void OnOpenLogClicked(OpenLogArgs e)
         {
             OpenLogClicked?.Invoke(this, e);
+        }
+
+        private bool MessageFilter(object item)
+        {
+            if(String.IsNullOrEmpty(Filter.Text))
+                return true;
+            return (((MessageViewModel) item).Name.IndexOf(Filter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void FilterOnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(MessageLogList.ItemsSource)?.Refresh();
         }
     }
 }

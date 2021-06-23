@@ -23,6 +23,7 @@ namespace Agents.Net.LogViewer.WpfView.Agents
                 set.Message1.Window.Dispatcher.Invoke(
                     () =>
                     {
+                        set.Message1.Window.Filter.Text = string.Empty;
                         set.Message1.Window.MessageLogList.ScrollIntoView(set.Message2.ViewModel);
                         set.Message1.Window.MessageLogList.SelectedItem = set.Message2.ViewModel;
                     });

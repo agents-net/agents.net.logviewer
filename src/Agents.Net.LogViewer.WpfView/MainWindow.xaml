@@ -42,11 +42,14 @@
                                  d:DataContext="{d:DesignInstance viewModel:LogViewModel, IsDesignTimeCreatable=True}">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="2" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" Style="{DynamicResource MaterialDesignListBox}" ItemsSource="{Binding Messages}"
+                    <TextBox materialDesign:HintAssist.Hint="Filter" x:Name="Filter" TextChanged="FilterOnTextChanged"
+                             Margin="0,0,0,5"/>
+                    <ListBox Grid.Row="1" Style="{DynamicResource MaterialDesignListBox}" ItemsSource="{Binding Messages}"
                              x:Name="MessageLogList" SelectionMode="Single"
                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True">
                         <ListBox.ItemTemplate>
@@ -76,12 +79,12 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <GridSplitter Grid.Row="1" ResizeDirection="Rows"
+                    <GridSplitter Grid.Row="2" ResizeDirection="Rows"
                                   ResizeBehavior="PreviousAndNext"
                                   HorizontalAlignment="Stretch"
                                   Height="2"
                                   Width="Auto"/>
-                    <ListBox Grid.Row="2" Style="{DynamicResource MaterialDesignListBox}" ItemsSource="{Binding Agents}"
+                    <ListBox Grid.Row="3" Style="{DynamicResource MaterialDesignListBox}" ItemsSource="{Binding Agents}"
                              x:Name="AgentList" SelectionMode="Single"
                              materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True">
                         <ListBox.ItemTemplate>

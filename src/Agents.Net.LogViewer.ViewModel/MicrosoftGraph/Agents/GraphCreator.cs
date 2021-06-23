@@ -13,6 +13,7 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
     [Produces(typeof(OutgoingGraphCreated))]
     public class GraphCreator : Agent
     {
+        private const int MaximumGraphNodes = 50;
         public GraphCreator(IMessageBoard messageBoard) : base(messageBoard)
         {
         }
@@ -42,14 +43,20 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
         {
             Graph graph = new Graph {Attr = {LayerDirection = LayerDirection.TB}};
             HashSet<MessageViewModel> processedViewModels = new HashSet<MessageViewModel>();
-            AddNode(root);
+            Queue<MessageViewModel> pendingViewModels = new Queue<MessageViewModel>();
+            pendingViewModels.Enqueue(root);
+            while (processedViewModels.Count < MaximumGraphNodes &&
+                   pendingViewModels.Count > 0)
+            {
+                ProcessPendingViewModels(pendingViewModels.Dequeue());
+            }
             return graph;
-
-            Node AddNode(MessageViewModel viewModel)
+            
+            void ProcessPendingViewModels(MessageViewModel viewModel)
             {
                 if (!processedViewModels.Add(viewModel))
                 {
-                    return graph.FindNode(viewModel.Id.ToString("D"));
+                    return;
                 }
                 Node node = new Node(viewModel.Id.ToString("D"))
                 {
@@ -64,11 +71,22 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                 foreach (MessageViewModel predecessor in viewModel.Predecessors.Select(p => p.ViewModel)
                                                                   .Where(vm => vm != null))
                 {
-                    Node predecessorNode = AddNode(predecessor);
-                    graph.AddEdge(predecessorNode.Id, node.Id);
+                    if (processedViewModels.Contains(predecessor))
+                    {
+                        graph.AddEdge(predecessor.Id.ToString("D"), node.Id);
+                    }
+                    else
+                    {
+                        pendingViewModels.Enqueue(predecessor);
+                    }
                 }
 
-                return node;
+                foreach (MessageViewModel successor in viewModel.Successors.Select(p => p.ViewModel)
+                                                  .Where(vm => vm != null)
+                                                  .Where(processedViewModels.Contains))
+                {
+                    graph.AddEdge(node.Id, successor.Id.ToString("D"));
+                }
             }
         }
 
@@ -76,14 +94,20 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
         {
             Graph graph = new Graph {Attr = {LayerDirection = LayerDirection.TB}};
             HashSet<MessageViewModel> processedViewModels = new HashSet<MessageViewModel>();
-            AddNode(root);
+            Queue<MessageViewModel> pendingViewModels = new Queue<MessageViewModel>();
+            pendingViewModels.Enqueue(root);
+            while (processedViewModels.Count < MaximumGraphNodes &&
+                   pendingViewModels.Count > 0)
+            {
+                ProcessPendingViewModels(pendingViewModels.Dequeue());
+            }
             return graph;
-
-            Node AddNode(MessageViewModel viewModel)
+            
+            void ProcessPendingViewModels(MessageViewModel viewModel)
             {
                 if (!processedViewModels.Add(viewModel))
                 {
-                    return graph.FindNode(viewModel.Id.ToString("D"));
+                    return;
                 }
                 Node node = new Node(viewModel.Id.ToString("D"))
                 {
@@ -95,14 +119,25 @@ namespace Agents.Net.LogViewer.ViewModel.MicrosoftGraph.Agents
                     UserData = viewModel
                 };
                 graph.AddNode(node);
-                foreach (MessageViewModel successor in viewModel.Successors.Select(p => p.ViewModel)
+                foreach (MessageViewModel successors in viewModel.Successors.Select(p => p.ViewModel)
                                                                   .Where(vm => vm != null))
                 {
-                    Node successorNode = AddNode(successor);
-                    graph.AddEdge(node.Id, successorNode.Id);
+                    if (processedViewModels.Contains(successors))
+                    {
+                        graph.AddEdge(node.Id,successors.Id.ToString("D"));
+                    }
+                    else
+                    {
+                        pendingViewModels.Enqueue(successors);
+                    }
                 }
 
-                return node;
+                foreach (MessageViewModel predecessor in viewModel.Predecessors.Select(p => p.ViewModel)
+                                                                .Where(vm => vm != null)
+                                                                .Where(processedViewModels.Contains))
+                {
+                    graph.AddEdge(predecessor.Id.ToString("D"), node.Id);
+                }
             }
         }
 
